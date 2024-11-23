@@ -1,0 +1,68 @@
+---
+{{ /* Aquí puedes agregar cualquier importación o configuración necesaria */ }}
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+    <title>Proyectos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        {{ /* Sección de contenido */ }}
+        <div class="section">
+            <div class="section-header">
+                <span>CBA me capacita</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="section-content">
+                <p>Este sistema permite a los administradores del programa gestionar trayectos formativos...</p>
+                <div class="carousel-container">
+                    <div class="carousel" id="carousel1">
+                        <img src="https://via.placeholder.com/800x400/ff7f7f/333333?text=Imagen+1" alt="CBA me capacita 1">
+                        <img src="https://via.placeholder.com/800x400/7f7fff/333333?text=Imagen+2" alt="CBA me capacita 2">
+                    </div>
+                    <button class="carousel-button prev-button" onclick="prevSlide('carousel1')">&#8249;</button>
+                    <button class="carousel-button next-button" onclick="nextSlide('carousel1')">&#8250;</button>
+                </div>
+            </div>
+        </div>
+        {{ /* Repite las secciones restantes aquí */ }}
+    </div>
+
+    <script>
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const sectionContent = header.nextElementSibling;
+                if (sectionContent) {
+                    sectionContent.classList.toggle('show');
+                    const icon = header.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-chevron-down');
+                        icon.classList.toggle('fa-chevron-up');
+                    }
+                }
+            });
+        });
+
+        function prevSlide(carouselId: string) {
+            const carousel = document.getElementById(carouselId);
+            if (carousel && carousel.firstElementChild) {
+                carousel.appendChild(carousel.firstElementChild);
+            }
+        }
+
+        function nextSlide(carouselId: string) {
+            const carousel = document.getElementById(carouselId);
+            if (carousel && carousel.lastElementChild) {
+                carousel.insertBefore(carousel.lastElementChild, carousel.firstElementChild);
+            }
+        }
+    </script>
+</body>
+</html> 
